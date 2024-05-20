@@ -1,4 +1,4 @@
-#! /usr/local/bin/zsh
+#! /bin/zsh
 
 # Note that I added kafka commands to the PATH. 
 # You may need to adjust your .bashrc or .zshrc file and modify file paths like 
@@ -11,18 +11,18 @@
 # Another way is to use Homebrew on Mac with `brew services start kafka` or `brew services stop kafka`.
 
 # If topics exist, delete them first
-kafka-topics --bootstrap-server localhost:9092 --delete --topic incoming-order
-kafka-topics --bootstrap-server localhost:9092 --delete --topic fulfill-notification
-kafka-topics --bootstrap-server localhost:9092 --delete --topic current-price
+kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic incoming-order
+kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic fulfill-notification
+kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic current-price
 
 # Step 2, create 3 topics whose names are
 # 1, incoming-order
 # 2, fulfill-notification
 # 3, current-price
 
-kafka-topics --create --topic incoming-order --bootstrap-server localhost:9092
-kafka-topics --create --topic fulfill-notification --bootstrap-server localhost:9092
-kafka-topics --create --topic current-price --bootstrap-server localhost:9092
+kafka-topics.sh --create --topic incoming-order --bootstrap-server localhost:9092
+kafka-topics.sh --create --topic fulfill-notification --bootstrap-server localhost:9092
+kafka-topics.sh --create --topic current-price --bootstrap-server localhost:9092
 
 # To check existing topics:
 # kafka-topics --list --bootstrap-server localhost:9092
@@ -34,5 +34,5 @@ kafka-topics --create --topic current-price --bootstrap-server localhost:9092
 
 # Step 3, check the status of Kafka topics.
 
-kafka-topics --list --bootstrap-server localhost:9092
+kafka-topics.sh --list --bootstrap-server localhost:9092
 
