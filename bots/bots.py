@@ -75,9 +75,12 @@ class NaiveBot(Bot):
             order_size = random.randint(10, 100)
             order_timestamp = int(time.time()*6)
             order_id = id(self) + id(order_timestamp)
-
-            order_price = int(random.normalvariate(
-                mu=self.data["current_price"], sigma=5))
+            default_price=69
+            # order_price = int(random.normalvariate(mu=self.data["current_price"], sigma=5))
+            try:
+                order_price = int(random.normalvariate(mu=self.data["current_price"], sigma=5))
+            except OverflowError:
+                order_price = default_price 
             if abs(order_price - self.data["current_price"]) > 2.5:
                 order_direction = "buy" if order_price - \
                     self.data["current_price"] < 0 else "sell"
